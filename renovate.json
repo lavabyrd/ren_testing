@@ -8,45 +8,16 @@
       "customType": "regex",
       "fileMatch": ["^datadog-agent/Dockerfile$"],
       "matchStrings": [
-        "# datadog/agent:(?<currentValue>[\\d\\.]+)@(?<currentDigest>sha256:[a-f0-9]+)\\r?\\nFROM datadog/agent@(?<currentDigest2>sha256:[a-f0-9]+)|tags:\\s+- (?<currentValue2>[\\d\\.]+)-\\d+"
+        "# datadog/agent:(?<currentValue>[\\d\\.]+)@(?<currentDigest>sha256:[a-f0-9]+)\\r?\\nFROM datadog/agent@(?<currentDigest2>sha256:[a-f0-9]+)"
       ],
       "datasourceTemplate": "docker",
       "depNameTemplate": "datadog/agent",
       "packageNameTemplate": "datadog/agent",
       "autoReplaceStringTemplate": "# datadog/agent:{{{newValue}}}@{{{newDigest}}}\nFROM datadog/agent@{{{newDigest}}}"
-    },
-    {
-      "customType": "regex",
-      "fileMatch": ["^Teku/(Dockerfile|build\\.yaml)$"],
-      "matchStrings": [
-        "# consensys/teku:(?<currentValue>[\\d\\.]+)\\r?\\nFROM consensys/teku@(?<currentDigest>sha256:[a-f0-9]+)|tags:\\s+- (?<currentValue2>[\\d\\.]+)-\\d+"
-      ],
-      "datasourceTemplate": "docker",
-      "depNameTemplate": "consensys/teku",
-      "packageNameTemplate": "consensys/teku",
-      "autoReplaceStringTemplate": "# consensys/teku:{{{newValue}}}\nFROM consensys/teku@{{{newDigest}}}"
-    },
-    {
-      "customType": "regex",
-      "fileMatch": ["^.*Dockerfile$"],
-      "matchStrings": [
-        "# (?<depName>[\\w-/]+):(?<currentValue>[\\d\\.]+)\\r?\\nFROM [\\w-/]+@(?<currentDigest>sha256:[a-f0-9]+)"
-      ],
-      "datasourceTemplate": "docker",
-      "versioningTemplate": "docker",
-      "depNameTemplate": "{{{depName}}}",
-      "autoReplaceStringTemplate": "# {{{depName}}}:{{{newValue}}}\nFROM {{{depName}}}@{{{newDigest}}}",
-      "packageNameTemplate": "{{{depName}}}"
     }
   ],
   "enabledManagers": ["custom.regex"],
   "dependencyDashboard": true,
   "ignorePaths": [
-    "dummy/**",
-    "**/README.md",
-    "**/*.mod",
-    "**/*.sum",
-    "**/*.go",
-    "**/Makefile"
   ]
 }
